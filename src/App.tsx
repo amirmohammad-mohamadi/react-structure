@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Suspense} from 'react'
+import Router from 'routers'
+// providers
+import {ThemeProvider} from 'providers/theme'
+import UserProvider from 'providers/user'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Suspense fallback={<div>loading ...</div>}>
+      <ThemeProvider>
+        <UserProvider>
+          <Router />
+        </UserProvider>
+      </ThemeProvider>
+    </Suspense>
+  )
 }
 
-export default App;
+export default App
